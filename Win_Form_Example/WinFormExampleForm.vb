@@ -8,6 +8,7 @@
 Option Explicit On
 Option Strict On
 Public Class WinFormExampleForm
+    Dim fruits As New List(Of String)
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
     End Sub
@@ -29,19 +30,27 @@ Public Class WinFormExampleForm
 
     End Sub
 
+    Private Sub SetListDefaults()
+        Me.fruits.Clear()
+        Me.fruits.Add("Apple")
+        Me.fruits.Add("Grape")
+        Me.fruits.Add("Banana")
+        Me.fruits.Add("Lemon")
+        Me.fruits.Add("Orange")
+    End Sub
+
+    Private Sub DisplayList()
+        For Each fruit As String In Me.fruits
+            ExampleListBox.Items.Add(fruit)
+            ExampleComboBox.Items.Add(fruit)
+        Next
+    End Sub
+
     Private Sub WinFormExampleForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'add 5 fruits to the list box
-        ExampleListBox.Items.Add("Apple")
-        ExampleListBox.Items.Add("Grape")
-        ExampleListBox.Items.Add("Banana")
-        ExampleListBox.Items.Add("Lemon")
-        ExampleListBox.Items.Add("Orange")
-        'add same 5 fruits to combo box
-        ExampleComboBox.Items.Add("Apple")
-        ExampleComboBox.Items.Add("Grape")
-        ExampleComboBox.Items.Add("Banana")
-        ExampleComboBox.Items.Add("Lemon")
-        ExampleComboBox.Items.Add("Orange")
+        'sets the default list of fruits
+        SetListDefaults()
+        'adds default list of fruits to combo box and list box
+        DisplayList()
 
         ExampleComboBox.SelectedIndex = 0
 
