@@ -29,6 +29,7 @@ Partial Class WinFormExampleForm
         Me.StringReverseCheckBox = New System.Windows.Forms.CheckBox()
         Me.ExampleListBox = New System.Windows.Forms.ListBox()
         Me.RemoveButton = New System.Windows.Forms.Button()
+        Me.ExampleComboBox = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'ExitButton
@@ -69,7 +70,7 @@ Partial Class WinFormExampleForm
         '
         Me.StringReverseCheckBox.AutoSize = True
         Me.StringReverseCheckBox.ForeColor = System.Drawing.Color.Blue
-        Me.StringReverseCheckBox.Location = New System.Drawing.Point(112, 83)
+        Me.StringReverseCheckBox.Location = New System.Drawing.Point(112, 66)
         Me.StringReverseCheckBox.Name = "StringReverseCheckBox"
         Me.StringReverseCheckBox.Size = New System.Drawing.Size(83, 21)
         Me.StringReverseCheckBox.TabIndex = 4
@@ -80,7 +81,7 @@ Partial Class WinFormExampleForm
         '
         Me.ExampleListBox.FormattingEnabled = True
         Me.ExampleListBox.ItemHeight = 16
-        Me.ExampleListBox.Location = New System.Drawing.Point(112, 122)
+        Me.ExampleListBox.Location = New System.Drawing.Point(12, 110)
         Me.ExampleListBox.Name = "ExampleListBox"
         Me.ExampleListBox.Size = New System.Drawing.Size(342, 212)
         Me.ExampleListBox.TabIndex = 5
@@ -94,11 +95,20 @@ Partial Class WinFormExampleForm
         Me.RemoveButton.Text = "&Remove"
         Me.RemoveButton.UseVisualStyleBackColor = True
         '
+        'ExampleComboBox
+        '
+        Me.ExampleComboBox.FormattingEnabled = True
+        Me.ExampleComboBox.Location = New System.Drawing.Point(380, 110)
+        Me.ExampleComboBox.Name = "ExampleComboBox"
+        Me.ExampleComboBox.Size = New System.Drawing.Size(385, 24)
+        Me.ExampleComboBox.TabIndex = 7
+        '
         'WinFormExampleForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(625, 450)
+        Me.ClientSize = New System.Drawing.Size(1029, 450)
+        Me.Controls.Add(Me.ExampleComboBox)
         Me.Controls.Add(Me.RemoveButton)
         Me.Controls.Add(Me.ExampleListBox)
         Me.Controls.Add(Me.StringReverseCheckBox)
@@ -120,4 +130,5 @@ Partial Class WinFormExampleForm
     Friend WithEvents StringReverseCheckBox As CheckBox
     Friend WithEvents ExampleListBox As ListBox
     Friend WithEvents RemoveButton As Button
+    Friend WithEvents ExampleComboBox As ComboBox
 End Class

@@ -19,7 +19,8 @@ Public Class WinFormExampleForm
             ExampleTextBox.Text = StrReverse(ExampleTextBox.Text)
         End If
 
-        Examplelistbox.items.add(ExampleTextBox.Text)
+        ExampleListBox.Items.Add(ExampleTextBox.Text)
+        ExampleComboBox.Items.Add(ExampleTextBox.Text)
     End Sub
 
 
@@ -35,6 +36,15 @@ Public Class WinFormExampleForm
         ExampleListBox.Items.Add("Banana")
         ExampleListBox.Items.Add("Lemon")
         ExampleListBox.Items.Add("Orange")
+        'add same 5 fruits to combo box
+        ExampleComboBox.Items.Add("Apple")
+        ExampleComboBox.Items.Add("Grape")
+        ExampleComboBox.Items.Add("Banana")
+        ExampleComboBox.Items.Add("Lemon")
+        ExampleComboBox.Items.Add("Orange")
+
+        ExampleComboBox.SelectedIndex = 0
+
     End Sub
 
     Private Sub ExampleListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExampleListBox.SelectedIndexChanged
@@ -43,6 +53,7 @@ Public Class WinFormExampleForm
             If ExampleListBox.SelectedIndex >= 0 Then
                 Me.Text = ExampleListBox.SelectedItem.ToString()
                 ExampleTextBox.Text = ExampleListBox.SelectedItem.ToString()
+                ExampleComboBox.SelectedIndex = ExampleListBox.SelectedIndex
             End If
 
         Catch oops As System.NullReferenceException
@@ -56,8 +67,26 @@ Public Class WinFormExampleForm
     Private Sub RemoveButton_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
         Try
             ExampleListBox.Items.RemoveAt(ExampleListBox.SelectedIndex)
+            ExampleComboBox.Items.RemoveAt(ExampleComboBox.SelectedIndex)
         Catch ex As Exception
             MsgBox("Please select an Item to remove.")
+        End Try
+    End Sub
+
+    Private Sub ExampleComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExampleComboBox.SelectedIndexChanged
+        Try
+            'set the text box to the selected item
+            If ExampleComboBox.SelectedIndex >= 0 Then
+                Me.Text = ExampleComboBox.SelectedItem.ToString()
+                ExampleComboBox.Text = ExampleComboBox.SelectedItem.ToString()
+                ExampleListBox.SelectedIndex = ExampleComboBox.SelectedIndex
+            End If
+
+        Catch oops As System.NullReferenceException
+            'do nothing
+        Catch ex As Exception
+            'do nothing
+            MsgBox(ExampleComboBox.SelectedIndex)
         End Try
     End Sub
 End Class
