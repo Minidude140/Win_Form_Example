@@ -20,6 +20,7 @@ Public Class WinFormExampleForm
         Me.fruits.Add("Banana")
         Me.fruits.Add("Lemon")
         Me.fruits.Add("Orange")
+
     End Sub
 
     ''' <summary>
@@ -50,6 +51,17 @@ Public Class WinFormExampleForm
         End If
     End Sub
 
+    Sub RemoveItem(currentItem As String)
+        If ExampleListBox.SelectedIndex >= 0 Then
+
+            Do While fruits.Contains(currentItem)
+                Me.fruits.Remove(currentItem)
+            Loop
+        Else
+            MsgBox("Please select an Item to remove.")
+        End If
+        DisplayList()
+    End Sub
 
     'Event Handlers
     Private Sub WinFormExampleForm_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -57,8 +69,6 @@ Public Class WinFormExampleForm
         SetListDefaults()
         'adds default list of fruits to combo box and list box
         DisplayList()
-
-        ExampleComboBox.SelectedIndex = 0
 
     End Sub
 
@@ -77,12 +87,11 @@ Public Class WinFormExampleForm
     End Sub
 
     Private Sub RemoveButton_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
-        Try
-            ExampleListBox.Items.RemoveAt(ExampleListBox.SelectedIndex)
-            ExampleComboBox.Items.RemoveAt(ExampleComboBox.SelectedIndex)
-        Catch ex As Exception
+        If ExampleListBox.SelectedIndex >= 0 Then
+            RemoveItem(ExampleListBox.SelectedItem.ToString)
+        Else
             MsgBox("Please select an Item to remove.")
-        End Try
+        End If
     End Sub
 
     Private Sub StringReverseCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles StringReverseCheckBox.CheckedChanged
@@ -93,9 +102,12 @@ Public Class WinFormExampleForm
         Try
             'set the text box to the selected item
             If ExampleListBox.SelectedIndex >= 0 Then
+                RemoveButton.Enabled = True
                 Me.Text = ExampleListBox.SelectedItem.ToString()
                 ExampleTextBox.Text = ExampleListBox.SelectedItem.ToString()
                 ExampleComboBox.SelectedIndex = ExampleListBox.SelectedIndex
+            Else
+                RemoveButton.Enabled = False
             End If
 
         Catch oops As System.NullReferenceException
