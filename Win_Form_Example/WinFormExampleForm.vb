@@ -127,23 +127,4 @@ Public Class WinFormExampleForm
         End Try
     End Sub
 
-    'Private Sub ExampleComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) 'Handles ExampleComboBox.SelectedIndexChanged
-    '    If sender.Equals(ExampleComboBox) Then
-    '    End If
-    '    Try
-    '        'set the text box to the selected item
-    '        If ExampleComboBox.SelectedIndex >= 0 Then
-    '            Me.Text = ExampleComboBox.SelectedItem.ToString()
-    '            ExampleComboBox.Text = ExampleComboBox.SelectedItem.ToString()
-    '            ExampleListBox.SelectedIndex = ExampleComboBox.SelectedIndex
-    '        End If
-
-    '    Catch oops As System.NullReferenceException
-    '        'do nothing
-    '    Catch ex As Exception
-    '        'do nothing
-    '        MsgBox(ExampleComboBox.SelectedIndex)
-    '    End Try
-    'End Sub
-
 End Class
