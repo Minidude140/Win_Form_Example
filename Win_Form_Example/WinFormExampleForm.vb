@@ -98,15 +98,24 @@ Public Class WinFormExampleForm
 
     End Sub
 
-    Private Sub ExampleListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExampleListBox.SelectedIndexChanged
+    Private Sub SynchronizeListControls(sender As Object, e As EventArgs) Handles ExampleListBox.SelectedIndexChanged, ExampleComboBox.SelectedIndexChanged
+
         Try
             'set the text box to the selected item
             If ExampleListBox.SelectedIndex >= 0 Then
+                'synchronize list controls
+                If sender.Equals(ExampleListBox) Then
+                    ExampleComboBox.SelectedIndex = ExampleListBox.SelectedIndex
+                Else
+                    ExampleListBox.SelectedIndex = ExampleComboBox.SelectedIndex
+                End If
+                'enable remove button
                 RemoveButton.Enabled = True
+                'update header bar and text box with current selection
                 Me.Text = ExampleListBox.SelectedItem.ToString()
                 ExampleTextBox.Text = ExampleListBox.SelectedItem.ToString()
-                ExampleComboBox.SelectedIndex = ExampleListBox.SelectedIndex
             Else
+                'disable remove button
                 RemoveButton.Enabled = False
             End If
 
@@ -118,21 +127,23 @@ Public Class WinFormExampleForm
         End Try
     End Sub
 
-    Private Sub ExampleComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ExampleComboBox.SelectedIndexChanged
-        Try
-            'set the text box to the selected item
-            If ExampleComboBox.SelectedIndex >= 0 Then
-                Me.Text = ExampleComboBox.SelectedItem.ToString()
-                ExampleComboBox.Text = ExampleComboBox.SelectedItem.ToString()
-                ExampleListBox.SelectedIndex = ExampleComboBox.SelectedIndex
-            End If
+    'Private Sub ExampleComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) 'Handles ExampleComboBox.SelectedIndexChanged
+    '    If sender.Equals(ExampleComboBox) Then
+    '    End If
+    '    Try
+    '        'set the text box to the selected item
+    '        If ExampleComboBox.SelectedIndex >= 0 Then
+    '            Me.Text = ExampleComboBox.SelectedItem.ToString()
+    '            ExampleComboBox.Text = ExampleComboBox.SelectedItem.ToString()
+    '            ExampleListBox.SelectedIndex = ExampleComboBox.SelectedIndex
+    '        End If
 
-        Catch oops As System.NullReferenceException
-            'do nothing
-        Catch ex As Exception
-            'do nothing
-            MsgBox(ExampleComboBox.SelectedIndex)
-        End Try
-    End Sub
+    '    Catch oops As System.NullReferenceException
+    '        'do nothing
+    '    Catch ex As Exception
+    '        'do nothing
+    '        MsgBox(ExampleComboBox.SelectedIndex)
+    '    End Try
+    'End Sub
 
 End Class
